@@ -1,124 +1,1210 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Bhavya Jain | Resume</title>
-    <link rel="stylesheet" href="styles.css"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gauri Tawari — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream: #FAF6EF;
+      --warm-white: #FDF9F4;
+      --terracotta: #C2714F;
+      --terracotta-light: #D9896A;
+      --deep-brown: #2C1A0E;
+      --muted-brown: #6B4226;
+      --sage: #7A8C6E;
+      --gold: #C8952A;
+      --gold-light: #E8B84B;
+      --blush: #E8C4AA;
+      --charcoal: #3A2E28;
+      --divider: rgba(194, 113, 79, 0.2);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--deep-brown);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.5;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 4rem;
+      background: rgba(250, 246, 239, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--terracotta);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted-brown);
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--terracotta); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -120px; top: -120px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200, 149, 42, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-text { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 32px; height: 1px;
+      background: var(--terracotta);
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--deep-brown);
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.4s;
+    }
+
+    .hero-name span {
+      color: var(--terracotta);
+      font-style: italic;
+    }
+
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--muted-brown);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.6s;
+    }
+
+    .hero-desc {
+      font-size: 0.92rem;
+      color: var(--charcoal);
+      max-width: 480px;
+      line-height: 1.9;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.8s;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 1s;
+    }
+
+    .badge {
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--blush);
+      border-radius: 999px;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--muted-brown);
+      background: rgba(232, 196, 170, 0.2);
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 1.1s;
+    }
+
+    .btn-primary {
+      padding: 0.75rem 2rem;
+      background: var(--terracotta);
+      color: var(--cream);
+      border: none;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--muted-brown); transform: translateY(-2px); }
+
+    .btn-outline {
+      padding: 0.75rem 2rem;
+      border: 1px solid var(--terracotta);
+      color: var(--terracotta);
+      border-radius: 4px;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-outline:hover { background: var(--terracotta); color: var(--cream); }
+
+    /* ── HERO VISUAL SIDE ── */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards 0.5s;
+    }
+
+    .hero-card {
+      width: 380px;
+      background: var(--warm-white);
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      padding: 2.5rem;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(44, 26, 14, 0.08);
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 40px; right: 40px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--terracotta), var(--gold));
+      border-radius: 0 0 4px 4px;
+    }
+
+    .avatar-ring {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      background: linear-gradient(135deg, var(--terracotta), var(--gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      color: white;
+      font-style: italic;
+      letter-spacing: -2px;
+    }
+
+    .card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      text-align: center;
+      color: var(--deep-brown);
+      margin-bottom: 0.3rem;
+    }
+
+    .card-role {
+      text-align: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      color: var(--terracotta);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.5rem;
+      border-top: 1px solid var(--divider);
+      padding-top: 1.5rem;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--terracotta);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted-brown);
+    }
+
+    .floating-ornament {
+      position: absolute;
+      font-size: 5rem;
+      opacity: 0.06;
+      color: var(--terracotta);
+      font-family: 'Cormorant Garamond', serif;
+      pointer-events: none;
+    }
+    .floating-ornament.top-right { top: 1rem; right: -2rem; font-size: 8rem; }
+    .floating-ornament.bottom-left { bottom: -1rem; left: -3rem; font-size: 7rem; }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 6rem 4rem;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--divider);
+      max-width: 60px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      color: var(--deep-brown);
+      margin-bottom: 3rem;
+      line-height: 1.2;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--warm-white);
+      border-top: 1px solid var(--divider);
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      line-height: 2;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-text p strong {
+      color: var(--terracotta);
+      font-weight: 500;
+    }
+
+    .info-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      display: flex;
+      gap: 1rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--divider);
+      font-size: 0.85rem;
+    }
+
+    .info-list li:last-child { border-bottom: none; }
+
+    .info-key {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      min-width: 90px;
+      padding-top: 0.1rem;
+    }
+
+    .info-val {
+      color: var(--charcoal);
+    }
+
+    /* ── EDUCATION ── */
+    #education { background: var(--cream); }
+
+    .edu-timeline {
+      position: relative;
+      padding-left: 2.5rem;
+    }
+
+    .edu-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 8px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--terracotta), transparent);
+    }
+
+    .edu-item {
+      position: relative;
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .edu-item.visible { opacity: 1; transform: translateX(0); }
+
+    .edu-item::before {
+      content: '';
+      position: absolute;
+      left: -2.5rem;
+      top: 8px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      border: 2px solid var(--cream);
+      box-shadow: 0 0 0 3px rgba(194, 113, 79, 0.2);
+    }
+
+    .edu-year {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.3rem;
+    }
+
+    .edu-degree {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--deep-brown);
+      margin-bottom: 0.2rem;
+    }
+
+    .edu-institute {
+      font-size: 0.85rem;
+      color: var(--muted-brown);
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-note {
+      font-size: 0.8rem;
+      color: var(--sage);
+      font-style: italic;
+    }
+
+    /* ── ACHIEVEMENTS ── */
+    #achievements { background: var(--deep-brown); }
+
+    #achievements .section-label { color: var(--gold-light); }
+    #achievements .section-title { color: var(--cream); }
+    #achievements .section-title em { color: var(--gold-light); }
+
+    .achieve-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .achieve-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 1.8rem;
+      transition: transform 0.3s, border-color 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.3s;
+    }
+
+    .achieve-card.visible { opacity: 1; transform: translateY(0); }
+    .achieve-card:hover { border-color: rgba(200, 149, 42, 0.4); }
+
+    .achieve-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .achieve-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+
+    .achieve-desc {
+      font-size: 0.8rem;
+      color: rgba(250, 246, 239, 0.55);
+      line-height: 1.7;
+    }
+
+    /* ── DANCE ── */
+    #dance {
+      background: linear-gradient(135deg, var(--warm-white) 0%, rgba(232, 196, 170, 0.2) 100%);
+      border-top: 1px solid var(--divider);
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .dance-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .dance-visual {
+      position: relative;
+    }
+
+    .dance-mandala {
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      border: 1px solid rgba(194, 113, 79, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .dance-mandala::before {
+      content: '';
+      position: absolute;
+      inset: 20px;
+      border-radius: 50%;
+      border: 1px solid rgba(194, 113, 79, 0.15);
+    }
+
+    .dance-mandala::after {
+      content: '';
+      position: absolute;
+      inset: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(194, 113, 79, 0.1);
+    }
+
+    .dance-center {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.5rem;
+      color: var(--terracotta);
+      font-style: italic;
+      opacity: 0.7;
+      z-index: 1;
+      animation: spin-slow 20s linear infinite;
+    }
+
+    .dance-details { }
+
+    .dance-badge-large {
+      display: inline-block;
+      padding: 0.5rem 1.4rem;
+      background: var(--terracotta);
+      color: white;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .dance-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--deep-brown);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .dance-title strong { font-weight: 600; }
+
+    .dance-desc {
+      font-size: 0.9rem;
+      color: var(--charcoal);
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+    }
+
+    .award-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .award-pill {
+      padding: 0.3rem 0.9rem;
+      background: rgba(194, 113, 79, 0.1);
+      border: 1px solid rgba(194, 113, 79, 0.3);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      color: var(--muted-brown);
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--cream); }
+
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .skill-group-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--deep-brown);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .skill-item {
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
+      font-size: 0.82rem;
+      color: var(--charcoal);
+    }
+
+    .skill-pct { color: var(--terracotta); font-size: 0.75rem; }
+
+    .skill-bar {
+      height: 3px;
+      background: rgba(194, 113, 79, 0.12);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--terracotta), var(--gold));
+      border-radius: 999px;
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hobby-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .hobby-card {
+      padding: 1.2rem;
+      background: var(--warm-white);
+      border: 1px solid var(--divider);
+      border-radius: 8px;
+      font-size: 0.82rem;
+      color: var(--charcoal);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .hobby-icon { font-size: 1.2rem; }
+
+    /* ── LEADERSHIP ── */
+    #leadership {
+      background: var(--warm-white);
+      border-top: 1px solid var(--divider);
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .lead-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .lead-card {
+      padding: 2rem;
+      border-radius: 12px;
+      background: var(--cream);
+      border: 1px solid var(--divider);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .lead-card:hover { transform: translateY(-4px); }
+
+    .lead-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--terracotta), var(--gold));
+    }
+
+    .lead-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--deep-brown);
+      margin-bottom: 0.3rem;
+    }
+
+    .lead-where {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1rem;
+    }
+
+    .lead-desc {
+      font-size: 0.85rem;
+      color: var(--charcoal);
+      line-height: 1.8;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--deep-brown);
+      text-align: center;
+      padding: 7rem 4rem;
+    }
+
+    #contact .section-label { color: var(--gold-light); justify-content: center; }
+    #contact .section-label::after { display: none; }
+    #contact .section-label::before { content: ''; flex: 1; height: 1px; background: rgba(200, 149, 42, 0.3); max-width: 60px; }
+
+    .contact-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+
+    .contact-title em { color: var(--gold-light); font-style: italic; }
+
+    .contact-sub {
+      font-size: 0.9rem;
+      color: rgba(250, 246, 239, 0.55);
+      max-width: 420px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: rgba(250, 246, 239, 0.7);
+    }
+
+    .contact-icon {
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1A0D06;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: rgba(250, 246, 239, 0.25);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { gap: 1.5rem; }
+      .hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; }
+      .hero-visual { display: none; }
+      section { padding: 4rem 2rem; }
+      .about-grid, .dance-grid, .skills-layout, .lead-cards { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hobby-grid { grid-template-columns: 1fr; }
+      .hero-cta { flex-direction: column; width: fit-content; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .achieve-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <aside class="sidebar">
-            <img src="bhavya_resized.jpg" alt="Bhavya Jain" class="profile-pic"/>
-            <h1 class="name">Bhavya Jain</h1>
 
-            <button class="collapsible">More About Me ⬇️</button>
-            <div class="content">
-                <p>🎂 5th March 2005</p>
-                <p>📍 Kunkuri, Chhattisgarh</p>
-                <p>🎓 Student at IIM Bangalore & IVB Chennai</p>
-            </div>
+  <!-- NAVBAR -->
+  <nav>
+    <a class="nav-logo" href="#">GT</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#dance">Dance</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-            <div class="social-links">
-                <a href="https://www.instagram.com/_bhavyajain._" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/bhavya-jain-34bb45232/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                <a href="mailto:bhavyajain@example.com"><i class="fas fa-envelope"></i></a>
-            </div>
-
-            <div class="contact-info">
-                <a href="tel:+919999999999"><i class="fas fa-phone"></i> +91 99999 99999</a>
-            </div>
-
-            <a class="download-btn" href="BhavyaJain_Resume.pdf" download><i class="fas fa-download"></i> Download Resume</a>
-        </aside>
-
-        <main class="main-content">
-            <nav class="navigation">
-                <button onclick="navigate('resume')">📄 Resume</button>
-                <button onclick="navigate('skills')">🧠 Skills</button>
-                <button onclick="toggleTheme()" id="themeToggle">🌞/🌙</button>
-            </nav>
-
-            <section id="resume" class="section visible">
-                <div class="window">
-                    <h2>🎓 Education</h2>
-                    <ul>
-                        <li><strong>IIM Bangalore</strong> – Bachelor of Business Administration (2024–2027)</li>
-                        <li><strong>IVB Chennai</strong> – Specialization in Finance & Marketing (2025–2028)</li>
-                        <li><strong>VIT Vellore</strong> – B.Tech in Computer Science and Engineering (2024, dropped out)</li>
-                        <li><strong>12th Grade</strong> – 78%</li>
-                        <li><strong>10th Grade</strong> – 87.4%</li>
-                        <li>🎯 JEE 87 Percentiler | COMEDK Rank: 8000</li>
-                    </ul>
-                </div>
-
-                <div class="window">
-                    <h2>💼 Work Experience</h2>
-                    <ul>
-                        <li>🛍️ <strong>Retail Business Management (Family Business)</strong></li>
-                        <li>• Oversaw daily operations and inventory at Kumar Stores</li>
-                        <li>• Managed customer relations and sales tracking</li>
-                        <li>• Developed a local marketing plan for seasonal sales</li>
-                    </ul>
-                </div>
-
-                <div class="window">
-                    <h2>📜 Certifications</h2>
-                    <ul>
-                        <li>✅ Certified Writer – Terribly Tiny Tales</li>
-                        <li>📘 Anthology Contributor – Humans of Faith</li>
-                    </ul>
-                </div>
-
-                <div class="window">
-                    <h2>🏆 Sporting Achievements</h2>
-                    <ul>
-                        <li>🏸 State-Level Badminton Player</li>
-                        <li>🏏 National-Level Cricket Player</li>
-                    </ul>
-                </div>
-
-                <div class="window">
-                    <h2>🎯 Hobbies</h2>
-                    <ul>
-                        <li>📝 Storytelling</li>
-                        <li>📖 Reading Books</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section id="skills" class="section">
-                <div class="window">
-                    <h2>🧠 Skills</h2>
-                    <ul>
-                        <li>✍️ <strong>Content Writing:</strong> Writing thoughtful stories and professional content.</li>
-                        <li>🗣️ <strong>Exceptional Communication:</strong> Clear and confident public speaking and writing.</li>
-                        <li>📊 <strong>Marketing & Customer Management:</strong> Strategic thinking and customer engagement.</li>
-                        <li>🧠 <strong>Mathematical & Analytical Thinking:</strong> Strong problem-solving with data insight.</li>
-                    </ul>
-                </div>
-            </section>
-        </main>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Portfolio · 2025</p>
+      <h1 class="hero-name">Gauri<br/><span>Tawari</span></h1>
+      <p class="hero-tagline">Medicine · Management · Art</p>
+      <p class="hero-desc">
+        MBBS scholar at CIMS Bilaspur & BBA (Digital Business) candidate at <strong>IIM Bangalore</strong>. 
+        A thinker bridging healthcare with entrepreneurship, and a performer carrying the grace of Kathak on every stage.
+      </p>
+      <div class="hero-badges">
+        <span class="badge">MBBS · CIMS Bilaspur</span>
+        <span class="badge">IIM Bangalore · BBA</span>
+        <span class="badge">Kathak Visharad</span>
+        <span class="badge">School Topper · 95%</span>
+        <span class="badge">Olympiad Medalist</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#about" class="btn-primary">Explore Portfolio</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
     </div>
 
-    <script>
-        function navigate(sectionId) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
-            document.getElementById(sectionId).classList.add('visible');
-        }
+    <div class="hero-visual">
+      <span class="floating-ornament top-right">❧</span>
+      <span class="floating-ornament bottom-left">✦</span>
+      <div class="hero-card">
+        <div class="avatar-ring">GT</div>
+        <div class="card-name">Gauri Tawari</div>
+        <div class="card-role">MBBS · IIM-B · Kathak Performer</div>
+        <div class="card-stats">
+          <div class="stat">
+            <span class="stat-number">97.4</span>
+            <span class="stat-label">Class X %</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">95</span>
+            <span class="stat-label">Class XII %</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">6</span>
+            <span class="stat-label">Yrs Kathak</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        function toggleTheme() {
-            document.body.classList.toggle("dark-mode");
-        }
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-label">Who I Am</p>
+        <h2 class="section-title">An explorer at the <em>intersection</em> of worlds</h2>
+        <p>
+          I am a second-year <strong>MBBS student</strong> at Chhattisgarh Institute of Medical Sciences, Bilaspur, driven by a deep passion for the science of healing and the art of human connection.
+        </p>
+        <p>
+          Alongside my medical journey, I am pursuing a certified <strong>BBA in Digital Business & Entrepreneurship from IIM Bangalore</strong>, because I believe the future of healthcare will be shaped by those who can think like clinicians and lead like entrepreneurs.
+        </p>
+        <p>
+          Beyond academics, I am a national-award-winning <strong>Kathak performer</strong>, a content creator, an avid baker, and someone who finds beauty in both the precise and the spontaneous.
+        </p>
+      </div>
+      <div>
+        <p class="section-label">Quick Info</p>
+        <ul class="info-list">
+          <li><span class="info-key">Location</span><span class="info-val">Bilaspur, Chhattisgarh, India</span></li>
+          <li><span class="info-key">Date of Birth</span><span class="info-val">22 April 2006</span></li>
+          <li><span class="info-key">Currently</span><span class="info-val">MBBS Year 2 · CIMS Bilaspur</span></li>
+          <li><span class="info-key">Also</span><span class="info-val">BBA (Digital Business) · IIM Bangalore</span></li>
+          <li><span class="info-key">Languages</span><span class="info-val">English · Hindi · Marwari</span></li>
+          <li><span class="info-key">Interests</span><span class="info-val">Classical Dance · Baking · Content Creation · DIY Crafts</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-        const coll = document.querySelector(".collapsible");
-        const content = document.querySelector(".content");
-        coll.addEventListener("click", () => {
-            content.classList.toggle("show");
-        });
-    </script>
+  <!-- EDUCATION -->
+  <section id="education">
+    <p class="section-label">Academic Journey</p>
+    <h2 class="section-title">Education & <em>Qualifications</em></h2>
+    <div class="edu-timeline">
+
+      <div class="edu-item">
+        <p class="edu-year">2024 — Present</p>
+        <p class="edu-degree">MBBS — Bachelor of Medicine & Surgery</p>
+        <p class="edu-institute">Chhattisgarh Institute of Medical Sciences (CIMS), Bilaspur</p>
+        <p class="edu-note">Currently in Second Year · Batch 2024</p>
+      </div>
+
+      <div class="edu-item">
+        <p class="edu-year">Ongoing (Online)</p>
+        <p class="edu-degree">Certified BBA — Digital Business & Entrepreneurship</p>
+        <p class="edu-institute">Indian Institute of Management (IIM) Bangalore</p>
+        <p class="edu-note">Online Certification Program · Management · Innovation · Leadership</p>
+      </div>
+
+      <div class="edu-item">
+        <p class="edu-year">Class XII · CBSE</p>
+        <p class="edu-degree">Senior Secondary — Science</p>
+        <p class="edu-institute">CBSE Board</p>
+        <p class="edu-note">🏆 School Topper · Aggregate: 95%</p>
+      </div>
+
+      <div class="edu-item">
+        <p class="edu-year">Class X · CBSE</p>
+        <p class="edu-degree">Secondary School Certificate</p>
+        <p class="edu-institute">CBSE Board</p>
+        <p class="edu-note">Score: 97.4% · 🎖 100/100 in Sanskrit — Special Achievement</p>
+      </div>
+
+      <div class="edu-item">
+        <p class="edu-year">6 Years Training</p>
+        <p class="edu-degree">Kathak Visharad</p>
+        <p class="edu-institute">Indira Kala Sangeet Vishwavidyalaya, Khairagarh University</p>
+        <p class="edu-note">Advanced training in Indian Classical Dance (Kathak)</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <p class="section-label">Honors & Awards</p>
+    <h2 class="section-title">Milestones that <em>define</em> the journey</h2>
+    <div class="achieve-grid">
+
+      <div class="achieve-card">
+        <div class="achieve-icon">🏆</div>
+        <div class="achieve-title">School Topper — Class XII</div>
+        <div class="achieve-desc">Achieved 95% in Class XII CBSE, securing the top position in school and a strong foundation for medical entrance.</div>
+      </div>
+
+      <div class="achieve-card">
+        <div class="achieve-icon">⭐</div>
+        <div class="achieve-title">Class X Distinction — 97.4%</div>
+        <div class="achieve-desc">Scored 97.4% in Class X CBSE, including a perfect 100/100 in Sanskrit — a rare academic feat.</div>
+      </div>
+
+      <div class="achieve-card">
+        <div class="achieve-icon">🥇</div>
+        <div class="achieve-title">Olympiad Medals — SOF</div>
+        <div class="achieve-desc">Awarded multiple medals by the Science Olympiad Foundation (SOF) for exceptional academic performance across subjects.</div>
+      </div>
+
+      <div class="achieve-card">
+        <div class="achieve-icon">🎓</div>
+        <div class="achieve-title">Academic Scholarships</div>
+        <div class="achieve-desc">Received merit-based scholarships from both Aakash Institute and Allen Career Institute for outstanding competitive exam performance.</div>
+      </div>
+
+      <div class="achieve-card">
+        <div class="achieve-icon">💃</div>
+        <div class="achieve-title">National Kathak Awards</div>
+        <div class="achieve-desc">Won national-level Kathak competition awards in Pune (2019), Kolkata (2019), and Puri (2024) at prestigious cultural events.</div>
+      </div>
+
+      <div class="achieve-card">
+        <div class="achieve-icon">🎤</div>
+        <div class="achieve-title">School Captain</div>
+        <div class="achieve-desc">Elected School Captain, representing the entire student body and coordinating school-wide events, activities, and initiatives.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DANCE -->
+  <section id="dance">
+    <div class="dance-grid">
+      <div class="dance-visual">
+        <div class="dance-mandala">
+          <span class="dance-center">🪷</span>
+        </div>
+      </div>
+      <div class="dance-details">
+        <span class="dance-badge-large">Classical Arts</span>
+        <h2 class="dance-title"><strong>Kathak Visharad</strong> — The Art of Storytelling in Motion</h2>
+        <p class="dance-desc">
+          Trained for six years under the prestigious <strong>Indira Kala Sangeet Vishwavidyalaya, Khairagarh University</strong>, earning the Visharad qualification in Kathak — a classical North Indian dance form known for its intricate footwork, expressive gestures, and narrative grace.
+        </p>
+        <p class="dance-desc">
+          A celebrated performer at the national level, having competed and won at cultural events spanning across India.
+        </p>
+        <div class="award-pills">
+          <span class="award-pill">🏅 Pune 2019</span>
+          <span class="award-pill">🏅 Kolkata 2019</span>
+          <span class="award-pill">🏅 Puri 2024</span>
+          <span class="award-pill">National Level</span>
+          <span class="award-pill">Kathak Visharad</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">Capabilities</p>
+    <h2 class="section-title">Skills & <em>Interests</em></h2>
+    <div class="skills-layout">
+      <div>
+        <p class="skill-group-title">Core Competencies</p>
+
+        <div class="skill-item">
+          <div class="skill-top"><span>Presentation & Communication</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span>Classical Dance (Kathak)</span><span class="skill-pct">95%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span>Academic Research & Study</span><span class="skill-pct">88%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span>Digital Content Creation</span><span class="skill-pct">80%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span>Creative Arts & Painting</span><span class="skill-pct">78%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span>Business & Entrepreneurship</span><span class="skill-pct">75%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+        </div>
+      </div>
+
+      <div>
+        <p class="skill-group-title">Hobbies & Pursuits</p>
+        <div class="hobby-grid">
+          <div class="hobby-card"><span class="hobby-icon">🎂</span> Baking & Culinary Arts</div>
+          <div class="hobby-card"><span class="hobby-icon">✂️</span> DIY Crafts & Projects</div>
+          <div class="hobby-card"><span class="hobby-icon">🎬</span> YouTube Content Creation</div>
+          <div class="hobby-card"><span class="hobby-icon">🎨</span> Painting & Visual Arts</div>
+          <div class="hobby-card"><span class="hobby-icon">💃</span> Classical Dance Performance</div>
+          <div class="hobby-card"><span class="hobby-icon">📚</span> Continuous Learning</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP -->
+  <section id="leadership">
+    <p class="section-label">Leadership</p>
+    <h2 class="section-title">Roles that <em>shaped</em> character</h2>
+    <div class="lead-cards">
+      <div class="lead-card">
+        <p class="lead-role">School Captain</p>
+        <p class="lead-where">Senior School</p>
+        <p class="lead-desc">Served as the representative voice of the entire student body. Coordinated school events, managed inter-departmental activities, and demonstrated leadership, responsibility, and team coordination at the highest level of school governance.</p>
+      </div>
+      <div class="lead-card">
+        <p class="lead-role">Head Girl</p>
+        <p class="lead-where">Class 5</p>
+        <p class="lead-desc">Elected as Head Girl from an early age, actively participating in school leadership, student representation, and contributing to a positive school culture — a testament to natural leadership qualities nurtured from a young age.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Get in Touch</p>
+    <h2 class="contact-title">Let's <em>connect</em></h2>
+    <p class="contact-sub">
+      Whether it's a collaboration, an opportunity, or simply a conversation — I'd love to hear from you.
+    </p>
+    <div class="contact-row">
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <span>Bilaspur, Chhattisgarh, India</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📅</div>
+        <span>22 April 2006</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🎓</div>
+        <span>MBBS · IIM-B BBA</span>
+      </div>
+    </div>
+    <a href="mailto:your-email@example.com" class="btn-primary">Send a Message</a>
+  </section>
+
+  <footer>
+    © 2025 Gauri Tawari · Designed with intention · IIM Bangalore Portfolio Assignment
+  </footer>
+
+  <!-- JS: Scroll animations + skill bars -->
+  <script>
+    // Intersection observer for scroll-reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, entry.target.dataset.delay || 0);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.edu-item').forEach((el, i) => {
+      el.dataset.delay = i * 120;
+      observer.observe(el);
+    });
+
+    document.querySelectorAll('.achieve-card').forEach((el, i) => {
+      el.dataset.delay = i * 80;
+      observer.observe(el);
+    });
+
+    // Skill bars
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.skill-fill').forEach(bar => {
+            const w = bar.dataset.width;
+            setTimeout(() => { bar.style.width = w + '%'; }, 200);
+          });
+          skillObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const skillSection = document.getElementById('skills');
+    if (skillSection) skillObserver.observe(skillSection);
+
+    // Smooth active nav highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => {
+        if (window.scrollY >= sec.offsetTop - 120) current = sec.getAttribute('id');
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--terracotta)' : '';
+      });
+    });
+  </script>
+
 </body>
 </html>
