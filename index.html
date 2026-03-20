@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Bhavya Jain | Resume</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <img src="bhavya_resized.jpg" alt="Bhavya Jain" class="profile-pic"/>
+            <h1 class="name">Bhavya Jain</h1>
+
+            <button class="collapsible">More About Me ⬇️</button>
+            <div class="content">
+                <p>🎂 5th March 2005</p>
+                <p>📍 Kunkuri, Chhattisgarh</p>
+                <p>🎓 Student at IIM Bangalore & IVB Chennai</p>
+            </div>
+
+            <div class="social-links">
+                <a href="https://www.instagram.com/_bhavyajain._" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/bhavya-jain-34bb45232/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:bhavyajain@example.com"><i class="fas fa-envelope"></i></a>
+            </div>
+
+            <div class="contact-info">
+                <a href="tel:+919999999999"><i class="fas fa-phone"></i> +91 99999 99999</a>
+            </div>
+
+            <a class="download-btn" href="BhavyaJain_Resume.pdf" download><i class="fas fa-download"></i> Download Resume</a>
+        </aside>
+
+        <main class="main-content">
+            <nav class="navigation">
+                <button onclick="navigate('resume')">📄 Resume</button>
+                <button onclick="navigate('skills')">🧠 Skills</button>
+                <button onclick="toggleTheme()" id="themeToggle">🌞/🌙</button>
+            </nav>
+
+            <section id="resume" class="section visible">
+                <div class="window">
+                    <h2>🎓 Education</h2>
+                    <ul>
+                        <li><strong>IIM Bangalore</strong> – Bachelor of Business Administration (2024–2027)</li>
+                        <li><strong>IVB Chennai</strong> – Specialization in Finance & Marketing (2025–2028)</li>
+                        <li><strong>VIT Vellore</strong> – B.Tech in Computer Science and Engineering (2024, dropped out)</li>
+                        <li><strong>12th Grade</strong> – 78%</li>
+                        <li><strong>10th Grade</strong> – 87.4%</li>
+                        <li>🎯 JEE 87 Percentiler | COMEDK Rank: 8000</li>
+                    </ul>
+                </div>
+
+                <div class="window">
+                    <h2>💼 Work Experience</h2>
+                    <ul>
+                        <li>🛍️ <strong>Retail Business Management (Family Business)</strong></li>
+                        <li>• Oversaw daily operations and inventory at Kumar Stores</li>
+                        <li>• Managed customer relations and sales tracking</li>
+                        <li>• Developed a local marketing plan for seasonal sales</li>
+                    </ul>
+                </div>
+
+                <div class="window">
+                    <h2>📜 Certifications</h2>
+                    <ul>
+                        <li>✅ Certified Writer – Terribly Tiny Tales</li>
+                        <li>📘 Anthology Contributor – Humans of Faith</li>
+                    </ul>
+                </div>
+
+                <div class="window">
+                    <h2>🏆 Sporting Achievements</h2>
+                    <ul>
+                        <li>🏸 State-Level Badminton Player</li>
+                        <li>🏏 National-Level Cricket Player</li>
+                    </ul>
+                </div>
+
+                <div class="window">
+                    <h2>🎯 Hobbies</h2>
+                    <ul>
+                        <li>📝 Storytelling</li>
+                        <li>📖 Reading Books</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="skills" class="section">
+                <div class="window">
+                    <h2>🧠 Skills</h2>
+                    <ul>
+                        <li>✍️ <strong>Content Writing:</strong> Writing thoughtful stories and professional content.</li>
+                        <li>🗣️ <strong>Exceptional Communication:</strong> Clear and confident public speaking and writing.</li>
+                        <li>📊 <strong>Marketing & Customer Management:</strong> Strategic thinking and customer engagement.</li>
+                        <li>🧠 <strong>Mathematical & Analytical Thinking:</strong> Strong problem-solving with data insight.</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function navigate(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+            document.getElementById(sectionId).classList.add('visible');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle("dark-mode");
+        }
+
+        const coll = document.querySelector(".collapsible");
+        const content = document.querySelector(".content");
+        coll.addEventListener("click", () => {
+            content.classList.toggle("show");
+        });
+    </script>
+</body>
+</html>
